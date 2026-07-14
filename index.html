@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solace Wellness Spa — Precision Care, Quietly Delivered</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  /* ============ TOKENS — clean, clinical-calm palette ============ */
+  :root{
+    --pine: #1F3A32;
+    --pine-deep: #142822;
+    --paper: #F7F6F3;
+    --stone: #E4E0D6;
+    --brass: #9C7A3E;
+    --sage: #7E9088;
+    --ink: #1B1F1D;
+    --ink-soft: #5C6059;
+    --line: rgba(27,31,29,0.14);
+    --radius-md: 4px;
+    --radius-lg: 6px;
+    --shadow: 0 24px 48px -30px rgba(20,40,34,0.35);
+    --ease: cubic-bezier(.22,.9,.28,1);
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  body{
+    margin:0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,h2,h3,h4{
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    line-height: 1.14;
+    margin: 0;
+    color: var(--pine-deep);
+    letter-spacing: -0.005em;
+  }
+
+  p{ margin: 0; }
+  a{ color: inherit; text-decoration: none; }
+  img{ max-width: 100%; display:block; }
+  ul{ margin:0; padding:0; list-style:none; }
+  button{ font-family: inherit; cursor: pointer; }
+
+  .eyebrow{
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brass);
+    font-weight: 600;
+  }
+
+  .wrap{ max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+  section{ padding: 110px 0; position: relative; }
+  @media (max-width: 768px){ section{ padding: 72px 0; } }
+
+  /* ============ SIGNATURE MARK ============ */
+  /* A single rotated hairline square — used as monogram, list marker, and
+     structural rhythm point throughout, instead of decoration. */
+  .mark{
+    width: 15px; height: 15px;
+    border: 1.4px solid currentColor;
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+  .mark.filled{ background: currentColor; }
+
+  .rule{
+    width: 100%; border: none; border-top: 1px solid var(--line); margin: 0;
+  }
+  .rule-thick{ border-top: 1px solid var(--pine); width: 48px; margin-bottom: 22px; }
+
+  /* ============ NAV ============ */
+  header{
+    position: sticky; top:0; z-index: 100;
+    background: rgba(247,246,243,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 20px 32px;
+    max-width: 1160px; margin:0 auto;
+  }
+  .logo{
+    display:flex; align-items:center; gap:12px;
+    font-family:'Newsreader', serif; font-weight:500; font-size:1.3rem;
+    color: var(--pine-deep);
+  }
+  .nav-links{ display:flex; gap:36px; align-items:center; }
+  .nav-links a{
+    font-size: 0.9rem; font-weight:500; color: var(--ink-soft);
+    transition: color .25s var(--ease);
+  }
+  .nav-links a:hover{ color: var(--pine); }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding: 13px 24px;
+    border-radius: var(--radius-md);
+    font-weight: 600; font-size: 0.85rem;
+    border: 1px solid transparent;
+    transition: transform .3s var(--ease), background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease);
+  }
+  .btn:hover{ transform: translateY(-2px); }
+  .btn-primary{ background: var(--pine); color: var(--paper); }
+  .btn-primary:hover{ background: var(--pine-deep); }
+  .btn-ghost{ border-color: var(--pine); color: var(--pine-deep); }
+  .btn-ghost:hover{ background: var(--pine); color: var(--paper); }
+
+  .menu-toggle{ display:none; background:none; border:none; flex-direction:column; gap:5px; padding:6px; }
+  .menu-toggle span{ width:24px; height:2px; background: var(--pine-deep); }
+
+  @media (max-width: 860px){
+    .nav-links{
+      position:fixed; top:68px; left:0; right:0;
+      background: var(--paper);
+      flex-direction:column; align-items:flex-start;
+      padding: 24px 32px 32px;
+      border-bottom: 1px solid var(--line);
+      transform: translateY(-140%);
+      transition: transform .35s var(--ease);
+      gap: 20px;
+    }
+    .nav-links.open{ transform: translateY(0); }
+    .menu-toggle{ display:flex; }
+    .nav-links .btn{ margin-top: 4px; }
+  }
+
+  /* ============ HERO ============ */
+  .hero{ padding: 84px 0 0; }
+  .hero-inner{
+    display:grid; grid-template-columns: 1fr 0.95fr;
+    gap: 64px; align-items:center;
+    padding-bottom: 70px;
+  }
+  @media (max-width: 900px){ .hero-inner{ grid-template-columns: 1fr; } }
+  .hero h1{
+    font-size: clamp(2.5rem, 4.6vw, 3.8rem);
+    margin: 20px 0 24px;
+  }
+  .hero h1 em{ font-style: italic; color: var(--brass); font-weight: 500; }
+  .hero p.lede{
+    font-size: 1.08rem; color: var(--ink-soft);
+    max-width: 460px; margin-bottom: 34px;
+  }
+  .hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; }
+
+  /* Hero photo — clean rectangular frame with an offset hairline, not organic */
+  .photo-stage{
+    position: relative;
+    aspect-ratio: 4/5;
+  }
+  .photo-outline{
+    position:absolute; inset: 18px -18px -18px 18px;
+    border: 1.4px solid var(--pine);
+    z-index: 0;
+  }
+  .photo-frame{
+    position: relative;
+    width: 100%; height: 100%;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: var(--shadow);
+    background: linear-gradient(160deg, var(--pine), var(--pine-deep));
+  }
+  .photo-frame img{ width:100%; height:100%; object-fit: cover; object-position: center; display:block; }
+  .photo-placeholder{
+    position:absolute; inset:0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap: 14px; text-align:center; padding: 40px;
+    color: rgba(247,246,243,0.85);
+  }
+  .photo-placeholder .icon{
+    width: 52px; height: 52px; border-radius: 50%;
+    border: 1.4px solid rgba(247,246,243,0.5);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .photo-placeholder p{ font-size: 0.85rem; max-width: 220px; line-height:1.5; }
+  .photo-placeholder code{ background: rgba(247,246,243,0.15); padding: 2px 8px; border-radius: 4px; font-size: 0.78rem; }
+  .photo-frame.has-image .photo-placeholder{ display:none; }
+  .photo-tag{
+    position:absolute; left: -18px; bottom: 30px; z-index: 2;
+    background: var(--paper); border: 1px solid var(--line);
+    padding: 12px 18px; display:flex; align-items:center; gap:10px;
+    box-shadow: var(--shadow);
+  }
+  .photo-tag span{ font-size: 0.8rem; color: var(--ink-soft); }
+  .photo-tag b{ font-family:'Newsreader',serif; font-weight:500; color: var(--pine-deep); display:block; font-size:0.95rem; }
+  @media (max-width: 500px){ .photo-tag{ left: 12px; } .photo-outline{ inset: 14px -10px -10px 10px; } }
+
+  /* ============ TRUST STRIP ============ */
+  .trust-strip{
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 28px 0;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap: 24px;
+  }
+  .trust-item{ display:flex; align-items:center; gap: 12px; }
+  .trust-item span{ font-size: 0.85rem; color: var(--ink-soft); font-weight:500; }
+
+  /* ============ APPROACH ============ */
+  .approach{ background: var(--paper); }
+  .approach-grid{ display:grid; grid-template-columns: 0.85fr 1.15fr; gap: 70px; align-items:center; }
+  @media (max-width: 900px){ .approach-grid{ grid-template-columns:1fr; } }
+  .approach-art{
+    aspect-ratio: 4/5; border-radius: var(--radius-lg);
+    background: var(--stone);
+    position:relative; overflow:hidden;
+    border: 1px solid var(--line);
+  }
+  .approach-art::after{
+    content:''; position:absolute; inset: 24px;
+    border: 1px solid var(--pine);
+    opacity: 0.35;
+  }
+  .approach-text h2{ font-size: clamp(1.8rem, 2.8vw, 2.4rem); margin: 16px 0 22px; }
+  .approach-text p{ color: var(--ink-soft); margin-bottom: 18px; max-width: 560px; }
+
+  /* ============ SESSION STEPS (real sequence — numbering earned) ============ */
+  .session{ background: var(--pine-deep); color: var(--paper); }
+  .session .eyebrow{ color: var(--brass); }
+  .session h2{ color: var(--paper); font-size: clamp(1.8rem,2.8vw,2.4rem); margin: 16px 0 50px; max-width: 640px; }
+  .session-steps{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+  @media (max-width: 900px){ .session-steps{ grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px){ .session-steps{ grid-template-columns: 1fr; } }
+  .session-step{ border-top: 1px solid rgba(247,246,243,0.22); padding-top: 20px; }
+  .session-step .num{ font-family:'IBM Plex Mono', monospace; font-size: 0.8rem; color: var(--brass); display:block; margin-bottom: 14px; }
+  .session-step h4{ color: var(--paper); font-size: 1.1rem; margin-bottom: 10px; font-weight:500; }
+  .session-step p{ color: rgba(247,246,243,0.68); font-size: 0.9rem; }
+
+  /* ============ SERVICES / PRICING ============ */
+  .services{ background: var(--paper); }
+  .section-head{ display:flex; justify-content:space-between; align-items:flex-end; gap: 30px; margin-bottom: 46px; flex-wrap:wrap; }
+  .section-head h2{ font-size: clamp(1.8rem,2.8vw,2.4rem); margin-top: 16px; }
+  .section-head p{ color: var(--ink-soft); max-width: 400px; }
+
+  .price-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  @media (max-width: 700px){ .price-grid{ grid-template-columns: 1fr; } }
+  .price-card{
+    background: var(--paper);
+    padding: 30px 32px;
+    display:flex; flex-direction:column; gap: 8px;
+    transition: background .3s var(--ease);
+  }
+  .price-card:hover{ background: #fff; }
+  .price-card.featured{ background: var(--pine-deep); color: var(--paper); }
+  .price-top{ display:flex; justify-content:space-between; align-items:baseline; gap: 16px; }
+  .price-top h4{ font-size: 1.1rem; font-weight:500; }
+  .price-card.featured h4{ color: var(--paper); }
+  .price-tag{ font-family:'IBM Plex Mono', monospace; font-weight:500; font-size: 1.05rem; white-space:nowrap; color: var(--pine); }
+  .price-card.featured .price-tag{ color: var(--brass); }
+  .price-meta{ font-size: 0.78rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-soft); }
+  .price-card.featured .price-meta{ color: rgba(247,246,243,0.6); }
+  .price-desc{ font-size: 0.9rem; color: var(--ink-soft); margin-top: 6px; }
+  .price-card.featured .price-desc{ color: rgba(247,246,243,0.78); }
+  .badge{
+    align-self:flex-start;
+    border: 1px solid var(--brass); color: var(--brass);
+    font-size: 0.66rem; font-weight:700; letter-spacing: 0.08em; text-transform:uppercase;
+    padding: 3px 9px; margin-bottom: 4px;
+  }
+  .price-footnote{ margin-top: 30px; font-size: 0.86rem; color: var(--ink-soft); display:flex; align-items:center; gap:10px; }
+
+  /* ============ TESTIMONIALS ============ */
+  .testimonials{ background: var(--stone); }
+  .test-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  @media (max-width: 900px){ .test-grid{ grid-template-columns:1fr; } }
+  .test-card{ background: var(--paper); padding: 30px; display:flex; flex-direction:column; gap: 16px; }
+  .test-card p{ color: var(--ink); font-size: 0.96rem; font-family:'Newsreader',serif; font-style: italic; }
+  .test-name{ font-size: 0.82rem; color: var(--ink-soft); font-weight: 600; font-family:'Inter',sans-serif; }
+
+  /* ============ GALLERY ============ */
+  .gallery-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  @media (max-width: 760px){ .gallery-grid{ grid-template-columns: repeat(2,1fr); } }
+  .gallery-tile{ aspect-ratio: 1; position:relative; overflow:hidden; }
+  .gallery-tile span{ position:absolute; bottom:14px; left:16px; font-size:0.76rem; color: var(--paper); font-weight:600; letter-spacing:0.02em; }
+  .t1{ background: linear-gradient(160deg,var(--pine),var(--pine-deep)); }
+  .t2{ background: linear-gradient(160deg,var(--brass),#7a5f2e); }
+  .t3{ background: linear-gradient(160deg,var(--sage),#556b62); }
+  .t4{ background: linear-gradient(160deg,#8a8577,var(--ink)); }
+
+  /* ============ BOOKING / WHATSAPP FORM ============ */
+  .booking{ background: var(--pine-deep); color: var(--paper); }
+  .booking-grid{ display:grid; grid-template-columns: 0.9fr 1.1fr; gap: 60px; }
+  @media (max-width: 900px){ .booking-grid{ grid-template-columns:1fr; } }
+  .booking .eyebrow{ color: var(--brass); }
+  .booking h2{ color: var(--paper); font-size: clamp(1.8rem,2.8vw,2.4rem); margin: 16px 0 22px; }
+  .booking-copy p{ color: rgba(247,246,243,0.75); margin-bottom: 16px; max-width: 420px; }
+  .booking-list{ margin-top: 26px; display:flex; flex-direction:column; gap:14px; }
+  .booking-list li{ display:flex; gap:12px; align-items:flex-start; font-size:0.9rem; color: rgba(247,246,243,0.85); }
+  .booking-list .mark{ margin-top: 4px; color: var(--brass); }
+
+  form.booking-form{
+    background: rgba(247,246,243,0.05);
+    border: 1px solid rgba(247,246,243,0.2);
+    border-radius: var(--radius-lg);
+    padding: 34px;
+    display:grid; grid-template-columns: 1fr 1fr; gap: 18px;
+  }
+  @media (max-width: 560px){ form.booking-form{ grid-template-columns: 1fr; padding: 24px; } }
+  form.booking-form .full{ grid-column: 1/-1; }
+  .field label{ display:block; font-size: 0.76rem; letter-spacing:0.05em; text-transform:uppercase; color: rgba(247,246,243,0.6); margin-bottom: 8px; }
+  .field input, .field select, .field textarea{
+    width:100%; padding: 13px 14px;
+    background: rgba(247,246,243,0.07);
+    border: 1px solid rgba(247,246,243,0.25);
+    border-radius: var(--radius-md);
+    color: var(--paper); font-family:'Inter',sans-serif; font-size: 0.94rem;
+  }
+  .field input::placeholder, .field textarea::placeholder{ color: rgba(247,246,243,0.4); }
+  .field select option{ color: var(--ink); }
+  .field input:focus, .field select:focus, .field textarea:focus{ outline: 2px solid var(--brass); outline-offset: 1px; }
+  textarea{ resize: vertical; min-height: 80px; }
+  .wa-submit{
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    background: #25D366; color: #06280f;
+    border:none; padding: 15px 20px; border-radius: var(--radius-md);
+    font-weight:700; font-size: 0.94rem;
+    transition: transform .25s var(--ease), filter .25s var(--ease);
+  }
+  .wa-submit:hover{ transform: translateY(-2px); filter: brightness(1.05); }
+  .form-note{ grid-column:1/-1; font-size: 0.78rem; color: rgba(247,246,243,0.5); margin-top: -4px; }
+
+  /* ============ FAQ ============ */
+  .faq{ background: var(--paper); }
+  .faq-list{ max-width: 740px; }
+  .faq-item{ border-bottom: 1px solid var(--line); }
+  .faq-q{
+    width:100%; background:none; border:none; text-align:left;
+    display:flex; justify-content:space-between; align-items:center;
+    padding: 22px 0; font-family:'Newsreader',serif; font-size: 1.08rem; color: var(--pine-deep); font-weight:500;
+  }
+  .faq-q .plus{ font-size: 1.3rem; color: var(--brass); transition: transform .3s var(--ease); flex-shrink:0; margin-left: 20px; font-family:'Inter',sans-serif; }
+  .faq-item.open .faq-q .plus{ transform: rotate(45deg); }
+  .faq-a{ max-height:0; overflow:hidden; transition: max-height .35s var(--ease); color: var(--ink-soft); font-size: 0.94rem; }
+  .faq-a-inner{ padding-bottom: 22px; max-width: 600px; }
+  .faq-item.open .faq-a{ max-height: 240px; }
+
+  /* ============ FOOTER ============ */
+  footer{ background: var(--pine-deep); color: rgba(247,246,243,0.75); padding: 64px 0 28px; }
+  .footer-grid{ display:grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 46px; border-bottom: 1px solid rgba(247,246,243,0.15); }
+  @media (max-width: 760px){ .footer-grid{ grid-template-columns: 1fr 1fr; } }
+  .footer-logo{ font-family:'Newsreader',serif; font-size:1.25rem; color: var(--paper); margin-bottom: 14px; display:flex; align-items:center; gap:12px; font-weight:500; }
+  .footer-col h5{ color: var(--paper); font-size: 0.78rem; letter-spacing:0.08em; text-transform:uppercase; margin-bottom: 16px; font-family:'Inter',sans-serif; font-weight:600; }
+  .footer-col p, .footer-col li{ font-size: 0.88rem; margin-bottom: 8px; }
+  .footer-col a:hover{ color: var(--brass); }
+  .hours-row{ display:flex; justify-content:space-between; gap: 12px; }
+  .bottom-bar{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; padding-top: 24px; font-size: 0.78rem; color: rgba(247,246,243,0.5); }
+
+  /* ============ FLOATING WHATSAPP BUTTON ============ */
+  .wa-float{
+    position: fixed; bottom: 26px; right: 26px; z-index: 200;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: #25D366; display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 12px 28px -8px rgba(37,211,102,0.55);
+  }
+
+  /* ============ REVEAL ON SCROLL ============ */
+  .reveal{ opacity:0; transform: translateY(20px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+  .reveal.is-visible{ opacity:1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header>
+  <div class="nav">
+    <div class="logo"><span class="mark" aria-hidden="true"></span>Solace</div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#approach">Approach</a>
+      <a href="#session">Your Session</a>
+      <a href="#prices">Treatments &amp; Prices</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#faq">FAQ</a>
+      <a href="#booking" class="btn btn-primary">Book on WhatsApp</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-inner">
+      <div>
+        <span class="eyebrow">Lekki Phase 1, Lagos</span>
+        <h1>Precision care,<br><em>quietly delivered.</em></h1>
+        <p class="lede">Licensed therapists, medical-grade hygiene protocols, and treatment plans built around your body — not a generic menu. Book a slot in under a minute, entirely on WhatsApp.</p>
+        <div class="hero-ctas">
+          <a href="#booking" class="btn btn-primary">Reserve a session</a>
+          <a href="#prices" class="btn btn-ghost">View treatments</a>
+        </div>
+      </div>
+      <div class="photo-stage">
+        <div class="photo-outline" aria-hidden="true"></div>
+        <div class="photo-frame" id="heroPhotoFrame">
+          <!-- Replace hero-massage.jpg with your own photo, keeping the same filename,
+               or update the src below to match your file name. -->
+          <img src="hero-massage.jpg" alt="A client receiving a massage at Solace Wellness Spa"
+               onerror="this.style.display='none'; document.getElementById('heroPhotoFrame').classList.remove('has-image');"
+               onload="document.getElementById('heroPhotoFrame').classList.add('has-image');">
+          <div class="photo-placeholder">
+            <div class="icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M21 16l-4.5-4.5a2 2 0 0 0-2.8 0L3 21"/></svg>
+            </div>
+            <p>Add a treatment photo here — save it as <code>hero-massage.jpg</code> next to this HTML file.</p>
+          </div>
+        </div>
+        <div class="photo-tag reveal">
+          <span class="mark filled" aria-hidden="true" style="color:var(--brass);"></span>
+          <div><b>Certified Therapists</b><span>Est. 2016</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="trust-strip reveal">
+      <div class="trust-item"><span class="mark" aria-hidden="true"></span><span>Licensed &amp; Insured</span></div>
+      <div class="trust-item"><span class="mark" aria-hidden="true"></span><span>Hygiene-First Protocols</span></div>
+      <div class="trust-item"><span class="mark" aria-hidden="true"></span><span>Certified Therapists</span></div>
+      <div class="trust-item"><span class="mark" aria-hidden="true"></span><span>Premium, Dermatologist-Reviewed Products</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APPROACH ============ -->
+<section class="approach" id="approach">
+  <div class="wrap">
+    <div class="approach-grid">
+      <div class="approach-art reveal" aria-hidden="true"></div>
+      <div class="approach-text reveal">
+        <span class="eyebrow">Our approach</span>
+        <div class="rule-thick"></div>
+        <h2>Every treatment starts with an assessment, not a menu.</h2>
+        <p>Before any session, your therapist reviews your posture, tension points, and health history to shape a plan for that day. It's the same standard of care you'd expect from a clinical setting, delivered in a calm, private room.</p>
+        <p>Our team completes ongoing training in anatomy, hygiene standards, and treatment technique, and every tool is sterilized between clients using hospital-grade equipment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SESSION STEPS ============ -->
+<section class="session" id="session">
+  <div class="wrap">
+    <span class="eyebrow reveal">How a session unfolds</span>
+    <h2 class="reveal">A consistent, unhurried structure — from intake to aftercare.</h2>
+    <div class="session-steps">
+      <div class="session-step reveal">
+        <span class="num">01</span>
+        <h4>Intake &amp; assessment</h4>
+        <p>A short review of tension points, medical history, and pressure preference.</p>
+      </div>
+      <div class="session-step reveal">
+        <span class="num">02</span>
+        <h4>Preparation</h4>
+        <p>Sterile tools, fresh linens, and a private room set to your temperature preference.</p>
+      </div>
+      <div class="session-step reveal">
+        <span class="num">03</span>
+        <h4>Treatment</h4>
+        <p>Your chosen session, delivered by a certified therapist at your pace.</p>
+      </div>
+      <div class="session-step reveal">
+        <span class="num">04</span>
+        <h4>Aftercare notes</h4>
+        <p>A short debrief with stretches or care tips to extend the benefit at home.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES / PRICES ============ -->
+<section class="services" id="prices">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Treatments &amp; prices</span>
+        <h2>Choose your treatment</h2>
+      </div>
+      <p>All prices are in Naira. Packages, corporate wellness plans, and gift vouchers available on request.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price-card featured reveal">
+        <span class="badge">Most booked</span>
+        <div class="price-top"><h4>Signature Therapeutic Massage</h4><span class="price-tag">₦25,000</span></div>
+        <span class="price-meta">60 minutes</span>
+        <p class="price-desc">Full-body massage combining Swedish and deep-tissue technique, tailored to your assessment.</p>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-top"><h4>Deep Tissue Massage</h4><span class="price-tag">₦35,000</span></div>
+        <span class="price-meta">90 minutes</span>
+        <p class="price-desc">Firm, focused work for chronic tension in the back, shoulders, and neck.</p>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-top"><h4>Hot Stone Therapy</h4><span class="price-tag">₦30,000</span></div>
+        <span class="price-meta">75 minutes</span>
+        <p class="price-desc">Heated basalt stones ease muscle stiffness and support circulation.</p>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-top"><h4>Clinical Facial</h4><span class="price-tag">₦20,000</span></div>
+        <span class="price-meta">45 minutes</span>
+        <p class="price-desc">Cleanse, steam, and dermatologist-reviewed serums suited to your skin assessment.</p>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-top"><h4>Body Scrub &amp; Wrap</h4><span class="price-tag">₦28,000</span></div>
+        <span class="price-meta">60 minutes</span>
+        <p class="price-desc">Exfoliation followed by a hydrating wrap for smoother, calmer skin.</p>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-top"><h4>Couples Session</h4><span class="price-tag">₦60,000</span></div>
+        <span class="price-meta">90 minutes · 2 guests</span>
+        <p class="price-desc">Side-by-side signature massages in our private double room.</p>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-top"><h4>Mani-Pedi Refresh</h4><span class="price-tag">₦18,000</span></div>
+        <span class="price-meta">50 minutes</span>
+        <p class="price-desc">Soak, shape, and polish for hands and feet, with a hand-massage finish.</p>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-top"><h4>Head &amp; Scalp Massage</h4><span class="price-tag">₦12,000</span></div>
+        <span class="price-meta">30 minutes</span>
+        <p class="price-desc">A quick reset for tension headaches — our most-booked add-on.</p>
+      </div>
+    </div>
+    <div class="price-footnote reveal"><span class="mark" aria-hidden="true"></span> Ask about our corporate wellness plans and monthly membership rates.</div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="testimonials">
+  <div class="wrap">
+    <span class="eyebrow reveal">In their words</span>
+    <div class="rule-thick reveal"></div>
+    <h2 class="reveal" style="margin-bottom: 40px; font-size: clamp(1.8rem,2.8vw,2.4rem);">Clients on the experience</h2>
+    <div class="test-grid">
+      <div class="test-card reveal">
+        <p>"The intake process alone told me this was a different level of care. My therapist adjusted pressure exactly where I needed it."</p>
+        <span class="test-name">— Ngozi A., regular client</span>
+      </div>
+      <div class="test-card reveal">
+        <p>"Booking on WhatsApp took thirty seconds and they confirmed within the hour. Everything felt clean and well-run."</p>
+        <span class="test-name">— Tunde O., first-time visitor</span>
+      </div>
+      <div class="test-card reveal">
+        <p>"We did the couples session for our anniversary. Quiet, professional, and the aftercare notes were a nice touch."</p>
+        <span class="test-name">— Chidinma &amp; Femi</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section id="gallery">
+  <div class="wrap">
+    <span class="eyebrow reveal">Inside Solace</span>
+    <div class="rule-thick reveal"></div>
+    <h2 class="reveal" style="margin-bottom: 40px; font-size: clamp(1.8rem,2.8vw,2.4rem);">Textures of the space</h2>
+    <div class="gallery-grid">
+      <div class="gallery-tile t1 reveal"><span>Treatment room</span></div>
+      <div class="gallery-tile t2 reveal"><span>Sterile tools</span></div>
+      <div class="gallery-tile t3 reveal"><span>Reception</span></div>
+      <div class="gallery-tile t4 reveal"><span>Product bar</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BOOKING / WHATSAPP FORM ============ -->
+<section class="booking" id="booking">
+  <div class="wrap">
+    <div class="booking-grid">
+      <div class="booking-copy reveal">
+        <span class="eyebrow">Book your visit</span>
+        <h2>Send your details, finish it on WhatsApp.</h2>
+        <p>Fill in the form and we'll open WhatsApp with everything pre-filled — just hit send. A real person replies, usually within the hour, to confirm your slot.</p>
+        <ul class="booking-list">
+          <li><span class="mark" aria-hidden="true"></span> No account or app download needed</li>
+          <li><span class="mark" aria-hidden="true"></span> Reschedule anytime, free of charge, up to 6 hours before</li>
+          <li><span class="mark" aria-hidden="true"></span> Gift vouchers and corporate plans available on request</li>
+        </ul>
+      </div>
+
+      <form class="booking-form reveal" id="bookingForm">
+        <div class="field">
+          <label for="name">Full name</label>
+          <input type="text" id="name" placeholder="Adaeze Chukwu" required>
+        </div>
+        <div class="field">
+          <label for="phone">Phone number</label>
+          <input type="tel" id="phone" placeholder="080X XXX XXXX" required>
+        </div>
+        <div class="field">
+          <label for="service">Treatment</label>
+          <select id="service" required>
+            <option value="" disabled selected>Select a treatment</option>
+            <option>Signature Therapeutic Massage — 60 min</option>
+            <option>Deep Tissue Massage — 90 min</option>
+            <option>Hot Stone Therapy — 75 min</option>
+            <option>Clinical Facial — 45 min</option>
+            <option>Body Scrub &amp; Wrap — 60 min</option>
+            <option>Couples Session — 90 min</option>
+            <option>Mani-Pedi Refresh — 50 min</option>
+            <option>Head &amp; Scalp Massage — 30 min</option>
+            <option>Not sure yet — advise me</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="date">Preferred date</label>
+          <input type="date" id="date" required>
+        </div>
+        <div class="field full">
+          <label for="time">Preferred time</label>
+          <input type="time" id="time">
+        </div>
+        <div class="field full">
+          <label for="notes">Anything we should know?</label>
+          <textarea id="notes" placeholder="Allergies, pressure preference, first visit, etc."></textarea>
+        </div>
+        <div class="full">
+          <button type="submit" class="wa-submit">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.44 1.27 4.89L2 22l5.25-1.38A9.94 9.94 0 0 0 12.04 22c5.52 0 10-4.48 10-10s-4.48-10-10-10Zm0 18.2c-1.59 0-3.06-.46-4.31-1.25l-.31-.18-3.12.82.83-3.04-.2-.31A8.18 8.18 0 0 1 3.8 12c0-4.55 3.7-8.24 8.24-8.24 4.55 0 8.24 3.7 8.24 8.24 0 4.55-3.7 8.24-8.24 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.15.17-.29.19-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.45-1.37-1.7-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.36-.77-1.86-.2-.48-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.06 0 1.22.88 2.4 1 2.56.12.17 1.74 2.66 4.22 3.73.59.25 1.05.4 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.17-.48-.29Z"/></svg>
+            Send booking on WhatsApp
+          </button>
+        </div>
+        <p class="form-note">This opens WhatsApp with your details filled in — nothing is booked until you press send there and we confirm.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <span class="eyebrow reveal">Good to know</span>
+    <div class="rule-thick reveal"></div>
+    <h2 class="reveal" style="margin-bottom: 40px; font-size: clamp(1.8rem,2.8vw,2.4rem);">Frequently asked questions</h2>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q">What should I bring? <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Just yourself. We provide robes, slippers, and towels. Mention any allergies or fragrance sensitivities when you book.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I walk in without booking? <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Walk-ins are welcome if a room is free, but we recommend booking on WhatsApp at least a few hours ahead to guarantee your preferred time and therapist.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What's your cancellation policy? <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Free rescheduling up to 6 hours before your appointment. Cancellations within 6 hours are subject to a 50% charge to compensate your reserved therapist's time.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do you offer corporate wellness plans? <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Yes — we work with teams on recurring on-site or in-spa sessions. Message us on WhatsApp for a custom quote.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo"><span class="mark" aria-hidden="true"></span>Solace Wellness Spa</div>
+        <p style="max-width:260px;">Licensed, clinically-minded massage and wellness care in Lekki Phase 1, Lagos — booked entirely over WhatsApp.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Visit</h5>
+        <p>12 Admiralty Way<br>Lekki Phase 1, Lagos</p>
+        <p><a href="#">Get directions</a></p>
+      </div>
+      <div class="footer-col">
+        <h5>Hours</h5>
+        <div class="hours-row"><span>Mon – Fri</span><span>9am – 8pm</span></div>
+        <div class="hours-row"><span>Saturday</span><span>9am – 9pm</span></div>
+        <div class="hours-row"><span>Sunday</span><span>11am – 6pm</span></div>
+      </div>
+      <div class="footer-col">
+        <h5>Reach us</h5>
+        <p><a href="https://wa.me/2348000000000" target="_blank" rel="noopener">WhatsApp: +234 800 000 0000</a></p>
+        <p><a href="#">Instagram</a> · <a href="#">LinkedIn</a></p>
+      </div>
+    </div>
+    <div class="bottom-bar">
+      <span>© 2026 Solace Wellness Spa. All rights reserved.</span>
+      <span>Site by PrimeFlow Technology</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ FLOATING WHATSAPP BUTTON ============ -->
+<a class="wa-float" href="https://wa.me/2348000000000?text=Hi%20Solace%20Wellness%20Spa%2C%20I%27d%20like%20to%20book%20a%20treatment." target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <svg width="27" height="27" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true"><path d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.44 1.27 4.89L2 22l5.25-1.38A9.94 9.94 0 0 0 12.04 22c5.52 0 10-4.48 10-10s-4.48-10-10-10Zm0 18.2c-1.59 0-3.06-.46-4.31-1.25l-.31-.18-3.12.82.83-3.04-.2-.31A8.18 8.18 0 0 1 3.8 12c0-4.55 3.7-8.24 8.24-8.24 4.55 0 8.24 3.7 8.24 8.24 0 4.55-3.7 8.24-8.24 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.15.17-.29.19-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.45-1.37-1.7-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.36-.77-1.86-.2-.48-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.06 0 1.22.88 2.4 1 2.56.12.17 1.74 2.66 4.22 3.73.59.25 1.05.4 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.17-.48-.29Z"/></svg>
+</a>
+
+<script>
+  // ===== CONFIG: replace with the spa's real WhatsApp number (country code + number, no + or spaces) =====
+  const WHATSAPP_NUMBER = '2348000000000'; // TODO: Solace Wellness Spa to replace with their actual WhatsApp business number
+
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(o => o.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Booking form -> WhatsApp deep link
+  const form = document.getElementById('bookingForm');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const service = document.getElementById('service').value;
+    const date = document.getElementById('date').value;
+    const time = document.getElementById('time').value;
+    const notes = document.getElementById('notes').value.trim();
+
+    let message = `Hi Solace Wellness Spa, I'd like to book a treatment.\n\n`;
+    message += `Name: ${name}\n`;
+    message += `Phone: ${phone}\n`;
+    message += `Treatment: ${service}\n`;
+    if (date) message += `Preferred date: ${date}\n`;
+    if (time) message += `Preferred time: ${time}\n`;
+    if (notes) message += `Notes: ${notes}\n`;
+
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  });
+</script>
+
+</body>
+</html>
