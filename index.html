@@ -230,6 +230,24 @@
     border: 1px solid var(--pine);
     opacity: 0.35;
   }
+  .approach-art img{
+  position:relative; z-index:1;
+  width:100%; height:100%; object-fit:cover; object-position:center;
+}
+.approach-art .photo-placeholder{
+  position:absolute; inset:0; z-index:2;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap: 14px; text-align:center; padding: 40px;
+  color: rgba(20,40,34,0.7);
+}
+.approach-art .icon{
+  width: 52px; height: 52px; border-radius: 50%;
+  border: 1.4px solid rgba(20,40,34,0.4);
+  display:flex; align-items:center; justify-content:center;
+}
+.approach-art .photo-placeholder p{ font-size: 0.85rem; max-width: 220px; line-height:1.5; }
+.approach-art .photo-placeholder code{ background: rgba(20,40,34,0.1); padding: 2px 8px; border-radius: 4px; font-size: 0.78rem; }
+.approach-art.has-image .photo-placeholder{ display:none; }
   .approach-text h2{ font-size: clamp(1.8rem, 2.8vw, 2.4rem); margin: 16px 0 22px; }
   .approach-text p{ color: var(--ink-soft); margin-bottom: 18px; max-width: 560px; }
 
@@ -413,14 +431,13 @@
         <div class="photo-frame" id="heroPhotoFrame">
           <!-- Replace hero-massage.jpg with your own photo, keeping the same filename,
                or update the src below to match your file name. -->
-          <img src="hero-massage.jpg" alt="A client receiving a massage at Solace Wellness Spa"
+          <img src="images/woman_receiving_spa_treatmeant_2.jpeg" alt="A client receiving a massage at Solace Wellness Spa"
                onerror="this.style.display='none'; document.getElementById('heroPhotoFrame').classList.remove('has-image');"
                onload="document.getElementById('heroPhotoFrame').classList.add('has-image');">
           <div class="photo-placeholder">
             <div class="icon" aria-hidden="true">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M21 16l-4.5-4.5a2 2 0 0 0-2.8 0L3 21"/></svg>
             </div>
-            <p>Add a treatment photo here — save it as <code>hero-massage.jpg</code> next to this HTML file.</p>
           </div>
         </div>
         <div class="photo-tag reveal">
@@ -444,7 +461,16 @@
 <section class="approach" id="approach">
   <div class="wrap">
     <div class="approach-grid">
-      <div class="approach-art reveal" aria-hidden="true"></div>
+      <div class="approach-art reveal" id="approachArt">
+  <img src="images/man_receiving_spa_treatmeant_2.jpeg" alt="Solace Wellness Spa treatment room"
+       onerror="this.style.display='none'; document.getElementById('approachArt').classList.remove('has-image');"
+       onload="document.getElementById('approachArt').classList.add('has-image');">
+  <div class="photo-placeholder">
+    <div class="icon" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M21 16l-4.5-4.5a2 2 0 0 0-2.8 0L3 21"/></svg>
+    </div>
+  </div>
+</div>
       <div class="approach-text reveal">
         <span class="eyebrow">Our approach</span>
         <div class="rule-thick"></div>
